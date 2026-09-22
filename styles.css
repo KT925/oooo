@@ -49,6 +49,13 @@ button {
   gap: 16px;
 }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .topbar {
   margin-bottom: 22px;
 }
@@ -177,12 +184,20 @@ textarea:focus {
 }
 
 .primary-button,
-.ghost-button {
+.ghost-button,
+.ghost-link {
   min-height: 40px;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0 14px;
   font-weight: 800;
+}
+
+.ghost-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .primary-button {
@@ -194,13 +209,15 @@ textarea:focus {
   background: var(--accent-dark);
 }
 
-.ghost-button {
+.ghost-button,
+.ghost-link {
   background: #edf1ea;
   border-color: var(--line);
   color: var(--ink);
 }
 
-.ghost-button:hover {
+.ghost-button:hover,
+.ghost-link:hover {
   background: #e3e9df;
 }
 
@@ -305,6 +322,10 @@ td {
     align-items: flex-start;
     flex-direction: column;
   }
+
+  .top-actions {
+    width: 100%;
+  }
 }
 
 @media (max-width: 560px) {
@@ -329,7 +350,9 @@ td {
   }
 
   .form-actions button,
-  .panel-header button {
+  .panel-header button,
+  .top-actions a,
+  .top-actions button {
     width: 100%;
   }
 }

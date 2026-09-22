@@ -34,3 +34,17 @@ open index.html
 - 週次レポートの自動生成
 - 目標別の増量・維持モード
 - LINE / Slack への翌日プラン通知
+
+## Instagram Content OS
+
+`instagram-content-os.html` は、Instagram運用のための投稿管理OSです。
+
+5本の柱で投稿案を整理できます。
+
+- BODY: 筋トレ、大会、食事管理、ボディメイク
+- BEAUTY: 美容外科看護師としての美容医療知識
+- TRAVEL: 海外旅行、ホテル、写真
+- MIND: 自立、仕事観、恋愛観、人生観
+- LIFE: 東京での日常、食事、ファッション
+
+投稿案、Hook、公開予定日、制作ステータスを保存でき、CSV出力にも対応しています。

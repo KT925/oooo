@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Instagram Content OS</title>
+    <link rel="stylesheet" href="instagram-content-os.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Instagram Content OS</p>
+          <h1>自分を磨きながら、自分の人生を自分で選ぶ女性のLifestyle</h1>
+          <p class="lead">BODY / BEAUTY / TRAVEL / MIND / LIFE の5本柱を、世界観・投稿企画・制作進行・週間配信まで一気通貫で管理します。</p>
+        </div>
+        <div class="hero-actions">
+          <a class="secondary-link" href="index.html">BodyTune</a>
+          <button id="seedIdeas" class="secondary-button" type="button">初期案を追加</button>
+          <button id="exportCsv" class="primary-button" type="button">CSV出力</button>
+        </div>
+      </header>
+
+      <section class="brand-strip" aria-label="ブランド設計">
+        <article>
+          <span>Core Audience</span>
+          <strong>20-30代、自分磨きと自立を両立したい女性</strong>
+        </article>
+        <article>
+          <span>Promise</span>
+          <strong>体・美容・旅・心・日常から、選べる人生を育てる</strong>
+        </article>
+        <article>
+          <span>Tone</span>
+          <strong>上品、リアル、前向き、芯がある</strong>
+        </article>
+      </section>
+
+      <section class="pillar-grid" aria-label="5本の柱">
+        <article class="pillar-card" data-pillar="BODY">
+          <span>BODY</span>
+          <h2>筋トレ・大会・食事管理・ボディメイク</h2>
+          <p>169cmの体作り、サマスタ大会までの変化、PFC管理、トレーニング記録。</p>
+        </article>
+        <article class="pillar-card" data-pillar="BEAUTY">
+          <span>BEAUTY</span>
+          <h2>美容外科看護師としての知識</h2>
+          <p>美容医療の基礎知識、施術解説、ダウンタイム、選び方の考え方。</p>
+        </article>
+        <article class="pillar-card" data-pillar="TRAVEL">
+          <span>TRAVEL</span>
+          <h2>海外旅行・ホテル・写真</h2>
+          <p>シドニー、セブ、ヨーロッパ、ホテル、旅先での写真と体験。</p>
+        </article>
+        <article class="pillar-card" data-pillar="MIND">
+          <span>MIND</span>
+          <h2>自立・仕事観・恋愛観・人生観</h2>
+          <p>自分との約束を守る、選ぶ力、働き方、恋愛観、人生観。</p>
+        </article>
+        <article class="pillar-card" data-pillar="LIFE">
+          <span>LIFE</span>
+          <h2>東京での日常・食事・ファッション</h2>
+          <p>日常Vlog、休日、レストラン、コーデ、暮らしの切り取り。</p>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <form id="ideaForm" class="panel">
+          <div class="panel-head">
+            <h2>投稿案を作る</h2>
+            <span id="editingLabel" class="pill">新規</span>
+          </div>
+          <input id="editingId" type="hidden">
+          <div class="form-grid">
+            <label>
+              柱
+              <select id="pillar" required>
+                <option>BODY</option>
+                <option>BEAUTY</option>
+                <option>TRAVEL</option>
+                <option>MIND</option>
+                <option>LIFE</option>
+              </select>
+            </label>
+            <label>
+              投稿形式
+              <select id="format" required>
+                <option>Reel</option>
+                <option>Carousel</option>
+                <option>Story</option>
+                <option>Live</option>
+                <option>Photo</option>
+              </select>
+            </label>
+            <label>
+              公開予定日
+              <input id="publishDate" type="date">
+            </label>
+            <label>
+              ステータス
+              <select id="status">
+                <option>Idea</option>
+                <option>Script</option>
+                <option>Shooting</option>
+                <option>Editing</option>
+                <option>Scheduled</option>
+                <option>Posted</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            投稿タイトル
+            <input id="title" type="text" placeholder="例：169cm女子の大会までの体作り 30日目" required>
+          </label>
+          <label>
+            Hook
+            <input id="hook" type="text" placeholder="例：体重が落ちない日に見直すべき3つのこと">
+          </label>
+          <label>
+            投稿メモ
+            <textarea id="memo" rows="5" placeholder="構成、撮影カット、伝えたいこと、CTAなど"></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">保存</button>
+            <button id="resetForm" class="secondary-button" type="button">リセット</button>
+          </div>
+        </form>
+
+        <section class="panel strategy-panel">
+          <div class="panel-head">
+            <h2>運用ルール</h2>
+            <span class="pill">週5投稿</span>
+          </div>
+          <div class="rule-list">
+            <article>
+              <strong>月 BODY</strong>
+              <p>変化、食事管理、トレーニング。信頼と努力の軸。</p>
+            </article>
+            <article>
+              <strong>火 BEAUTY</strong>
+              <p>看護師視点の美容医療知識。専門性の軸。</p>
+            </article>
+            <article>
+              <strong>水 MIND</strong>
+              <p>自立、仕事観、恋愛観。共感と保存の軸。</p>
+            </article>
+            <article>
+              <strong>金 TRAVEL / LIFE</strong>
+              <p>旅、ホテル、東京の日常。憧れと世界観の軸。</p>
+            </article>
+            <article>
+              <strong>日 Weekly Recap</strong>
+              <p>1週間の食事、体、仕事、日常をまとめて人格を伝える。</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="analytics">
+        <article class="stat-card">
+          <span>総投稿案</span>
+          <strong id="totalIdeas">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>今週予定</span>
+          <strong id="weeklyIdeas">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>制作中</span>
+          <strong id="activeIdeas">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>柱バランス</span>
+          <strong id="balanceScore">--</strong>
+        </article>
+      </section>
+
+      <section class="board">
+        <div class="panel-head board-head">
+          <h2>Content Board</h2>
+          <div class="filters">
+            <select id="pillarFilter">
+              <option value="ALL">すべての柱</option>
+              <option>BODY</option>
+              <option>BEAUTY</option>
+              <option>TRAVEL</option>
+              <option>MIND</option>
+              <option>LIFE</option>
+            </select>
+            <select id="statusFilter">
+              <option value="ALL">すべての状態</option>
+              <option>Idea</option>
+              <option>Script</option>
+              <option>Shooting</option>
+              <option>Editing</option>
+              <option>Scheduled</option>
+              <option>Posted</option>
+            </select>
+          </div>
+        </div>
+        <div id="contentBoard" class="content-board"></div>
+      </section>
+    </main>
+
+    <script src="instagram-content-os.js"></script>
+  </body>
+</html>

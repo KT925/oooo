@@ -81,12 +81,31 @@ Vercelなどにデプロイし、以下の環境変数を設定してくださ�
 ```text
 LINE_CHANNEL_SECRET
 LINE_CHANNEL_ACCESS_TOKEN
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
 ```
 
 Webhook URL:
 
 ```text
 https://YOUR_DOMAIN.vercel.app/api/line/webhook
+```
+
+SupabaseのSQLは以下にあります。
+
+```text
+supabase/line_expense_schema.sql
+```
+
+テキスト支出メモの自動化は以下に対応しています。
+
+```text
+ランチ 1280 食費
+9/22 タクシー 2400 交通費
+OK
+カテゴリ 美容
+金額 720
+店名 スタバ
 ```
 
 LINE Developersでプライバシーポリシーと利用規約のURLが必要な場合は、デプロイ後に以下を設定してください。

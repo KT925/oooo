@@ -52,6 +52,8 @@ Required environment variables:
 ```text
 LINE_CHANNEL_SECRET=...
 LINE_CHANNEL_ACCESS_TOKEN=...
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
 After deploying to Vercel, set the LINE webhook URL to:
@@ -68,7 +70,25 @@ Phase 1 supports text messages such as:
 化粧水 3980 美容
 ```
 
-The bot replies with a registration candidate. Supabase persistence and OCR are handled in later phases.
+The bot saves a pending expense to Supabase and replies with a registration candidate.
+
+Supported replies:
+
+```text
+OK
+カテゴリ 美容
+金額 720
+店名 スタバ
+メモ 打ち合わせ
+```
+
+`OK` changes the latest pending expense for the LINE user to `confirmed`.
+
+Run the Supabase SQL in:
+
+```text
+supabase/line_expense_schema.sql
+```
 
 ## Architecture
 
@@ -124,6 +144,7 @@ create table expenses (
   id uuid primary key default uuid_generate_v4(),
   source_id uuid references expense_sources(id) on delete set null,
   line_user_id text,
+  line_message_id text unique,
   status text not null default 'pending' check (status in ('pending', 'confirmed', 'rejected')),
   spent_on date,
   merchant text,
@@ -156,6 +177,7 @@ create table category_rules (
 
 create index expenses_spent_on_idx on expenses(spent_on desc);
 create index expenses_category_idx on expenses(category);
+create index expenses_line_user_status_idx on expenses(line_user_id, status, created_at desc);
 create index expense_receipts_message_idx on expense_receipts(line_message_id);
 ```
 

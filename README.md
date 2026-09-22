@@ -88,3 +88,10 @@ Webhook URL:
 ```text
 https://YOUR_DOMAIN.vercel.app/api/line/webhook
 ```
+
+LINE Developersでプライバシーポリシーと利用規約のURLが必要な場合は、デプロイ後に以下を設定してください。
+
+```text
+https://YOUR_DOMAIN.vercel.app/privacy-policy.html
+https://YOUR_DOMAIN.vercel.app/terms.html
+```

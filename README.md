@@ -48,3 +48,16 @@ open index.html
 - LIFE: 東京での日常、食事、ファッション
 
 投稿案、Hook、公開予定日、制作ステータスを保存でき、CSV出力にも対応しています。
+
+設計の全体像は `CODEX_MASTER_PROMPT.md` にまとめています。
+
+Phase 1では、ローカルで使えるInstagram Content OSとして以下を実装しています。
+
+- 低頻度でも続く写真メイン運用の設計
+- 5本柱の世界観整理
+- 投稿案の作成、編集、削除
+- Hook Libraryのプレビュー
+- Weekly Rhythmの表示
+- Monetization Mapの表示
+- 投稿ステータス管理
+- CSV出力

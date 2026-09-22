@@ -61,3 +61,15 @@ Phase 1では、ローカルで使えるInstagram Content OSとして以下を�
 - Monetization Mapの表示
 - 投稿ステータス管理
 - CSV出力
+
+## LINE Expense OS
+
+`line-expense-os.html` は、LINE公式アカウントに支出メモや領収書画像を送って台帳化する仕組みのプロトタイプです。
+
+設計書は `LINE_EXPENSE_OS.md` にまとめています。
+
+- LINE公式アカウントのWebhook設計
+- 領収書画像の取得・OCR導線
+- Supabase SQLスキーマ
+- 支出台帳のローカルプロトタイプ
+- CSV出力

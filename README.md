@@ -73,3 +73,18 @@ Phase 1では、ローカルで使えるInstagram Content OSとして以下を�
 - Supabase SQLスキーマ
 - 支出台帳のローカルプロトタイプ
 - CSV出力
+
+LINE Webhookの最小APIは `api/line/webhook.js` にあります。
+
+Vercelなどにデプロイし、以下の環境変数を設定してください。
+
+```text
+LINE_CHANNEL_SECRET
+LINE_CHANNEL_ACCESS_TOKEN
+```
+
+Webhook URL:
+
+```text
+https://YOUR_DOMAIN.vercel.app/api/line/webhook
+```

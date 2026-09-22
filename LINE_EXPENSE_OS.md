@@ -39,6 +39,37 @@ Required settings:
 - Channel access token
 - Use webhook: enabled
 
+## Phase 1 Webhook Endpoint
+
+This repository includes a Vercel-compatible webhook endpoint:
+
+```text
+/api/line/webhook
+```
+
+Required environment variables:
+
+```text
+LINE_CHANNEL_SECRET=...
+LINE_CHANNEL_ACCESS_TOKEN=...
+```
+
+After deploying to Vercel, set the LINE webhook URL to:
+
+```text
+https://YOUR_DOMAIN.vercel.app/api/line/webhook
+```
+
+Phase 1 supports text messages such as:
+
+```text
+ランチ 1280 食費
+タクシー 2400 交通費
+化粧水 3980 美容
+```
+
+The bot replies with a registration candidate. Supabase persistence and OCR are handled in later phases.
+
 ## Architecture
 
 ```text

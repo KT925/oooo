@@ -1,0 +1,13 @@
+{
+  "name": "oooo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check api/line/webhook.js && node --check app.js && node --check instagram-content-os.js && node --check line-expense-os.js",
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

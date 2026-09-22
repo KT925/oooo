@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BodyTune - 減量・ボディメイク管理</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="概要">
+        <div>
+          <p class="eyebrow">BodyTune</p>
+          <h1>記録から、明日の調整まで。</h1>
+        </div>
+        <button id="seedButton" class="ghost-button" type="button">サンプル投入</button>
+      </section>
+
+      <section class="dashboard" aria-label="ダッシュボード">
+        <article class="metric-card">
+          <span>現在体重</span>
+          <strong id="currentWeight">-- kg</strong>
+          <small id="weightDelta">記録待ち</small>
+        </article>
+        <article class="metric-card">
+          <span>7日平均摂取</span>
+          <strong id="avgCalories">-- kcal</strong>
+          <small id="calorieBalance">PFC入力待ち</small>
+        </article>
+        <article class="metric-card">
+          <span>週間運動</span>
+          <strong id="weeklyExercise">-- kcal</strong>
+          <small id="exerciseTrend">運動入力待ち</small>
+        </article>
+        <article class="metric-card">
+          <span>明日の方針</span>
+          <strong id="tomorrowFocus">--</strong>
+          <small id="tomorrowSummary">分析待ち</small>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <form id="entryForm" class="panel input-panel">
+          <div class="panel-header">
+            <h2>今日の記録</h2>
+            <input id="date" name="date" type="date" required>
+          </div>
+
+          <div class="grid-form">
+            <label>
+              体重 kg
+              <input id="weight" name="weight" type="number" step="0.1" min="20" max="250" placeholder="72.4">
+            </label>
+            <label>
+              体脂肪率 %
+              <input id="bodyFat" name="bodyFat" type="number" step="0.1" min="3" max="70" placeholder="18.2">
+            </label>
+            <label>
+              摂取 kcal
+              <input id="calories" name="calories" type="number" step="1" min="0" placeholder="2100">
+            </label>
+            <label>
+              タンパク質 g
+              <input id="protein" name="protein" type="number" step="1" min="0" placeholder="140">
+            </label>
+            <label>
+              脂質 g
+              <input id="fat" name="fat" type="number" step="1" min="0" placeholder="55">
+            </label>
+            <label>
+              炭水化物 g
+              <input id="carbs" name="carbs" type="number" step="1" min="0" placeholder="250">
+            </label>
+            <label>
+              運動 kcal
+              <input id="exerciseCalories" name="exerciseCalories" type="number" step="1" min="0" placeholder="320">
+            </label>
+            <label>
+              歩数
+              <input id="steps" name="steps" type="number" step="1" min="0" placeholder="9000">
+            </label>
+          </div>
+
+          <label class="wide-label">
+            メモ
+            <textarea id="note" name="note" rows="3" placeholder="脚トレ、外食、睡眠不足など"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="primary-button" type="submit">記録する</button>
+            <button id="clearButton" class="ghost-button" type="button">全データ削除</button>
+          </div>
+        </form>
+
+        <section class="panel settings-panel" aria-label="目標設定">
+          <div class="panel-header">
+            <h2>目標設定</h2>
+            <button id="saveSettings" class="ghost-button" type="button">保存</button>
+          </div>
+          <div class="grid-form">
+            <label>
+              目標体重 kg
+              <input id="targetWeight" type="number" step="0.1" min="20" max="250" value="68">
+            </label>
+            <label>
+              目標ペース kg/週
+              <input id="weeklyPace" type="number" step="0.1" min="0" max="1.5" value="0.5">
+            </label>
+            <label>
+              基準 kcal
+              <input id="baseCalories" type="number" step="10" min="800" max="6000" value="2200">
+            </label>
+            <label>
+              体重1kgあたりP g
+              <input id="proteinPerKg" type="number" step="0.1" min="0.8" max="3" value="2">
+            </label>
+            <label>
+              最低脂質 g
+              <input id="minFat" type="number" step="1" min="20" max="150" value="45">
+            </label>
+            <label>
+              歩数目標
+              <input id="targetSteps" type="number" step="100" min="1000" max="30000" value="9000">
+            </label>
+          </div>
+        </section>
+      </section>
+
+      <section class="analysis-grid">
+        <section class="panel chart-panel">
+          <div class="panel-header">
+            <h2>推移分析</h2>
+            <span id="recordCount" class="pill">0件</span>
+          </div>
+          <canvas id="trendChart" width="900" height="320" aria-label="体重と摂取カロリーの推移"></canvas>
+        </section>
+
+        <section class="panel recommendation-panel">
+          <div class="panel-header">
+            <h2>翌日の調整</h2>
+            <span id="confidence" class="pill">分析待ち</span>
+          </div>
+          <div id="recommendations" class="recommendations"></div>
+        </section>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-header">
+          <h2>記録履歴</h2>
+          <button id="exportButton" class="ghost-button" type="button">CSV出力</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th>体重</th>
+                <th>kcal</th>
+                <th>P/F/C</th>
+                <th>運動</th>
+                <th>歩数</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
